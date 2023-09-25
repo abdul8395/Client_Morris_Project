@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+
+    <title>Morris Project</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   
+    
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin="" />
+
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+      input.largerCheckbox {
+          width: 18px;
+          height: 18px;
+      }
+      .card-body{
+        color: aliceblue !important;
+      }
+      .lyr_lbls{
+        font-size: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <div class="navbar-icon-container">
+            <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+            <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+          </div>
+          <!-- <a class="navbar-brand" href="#">HMIS (Affordable Housing Marketing Information System)</a> -->
+        </div>
+        <div class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group has-feedback">
+
+                <!-- <span id="searchicon" class="fa fa-search form-control-feedback"></span> -->
+            </div>
+          </form>
+          <ul class="nav navbar-nav">
+           <!-- <li class="hidden-xs" ><img src="assets/img/logo.png" width="150"  height="47" alt=""
+            class="d-inline-block align-middle mr-2"></li><li class="hidden-xs" ><a class="" href="#">AFI</a></li>
+           <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;TOC</a></li>
+            -->
+            <li class="hidden-xs" style="padding-left:0px;">
+              <img src="assets/img/logo1.png" style="padding-left:0px;" width="200"  height="48" alt="" class="d-inline-block align-middle">
+              <!-- <a class="navbar-brand" href="#">VA_Territory_Map  </a>   -->
+            </li>
+            <!-- <li class="hidden-xs" style="margin-left: 1px; color: aliceblue !important;"><a class="navbar-brand" href="#">Client Morris Logo</a></li> -->
+            <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;TOC</a></li>
+            <!-- <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
+           <li class="dropdown">
+             <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Draw Tool <b class="caret"></b></a>
+             <ul class="dropdown-menu">
+               <li><a  data-toggle="collapse" onclick="drawNewPoint()">&nbsp;&nbsp;Add New Point</a></li>
+              &lt;!&ndash;  <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn">&nbsp;English</a></li>&ndash;&gt;
+              &lt;!&ndash;  <li class="divider hidden-xs"></li>&ndash;&gt;
+              &lt;!&ndash;  <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="login-btn">&nbsp;&nbsp;Hebrew</a></li>&ndash;&gt;
+             </ul>
+           </li> -->
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <div id="container" class="sidebar_background">
+      <div id="sidebar">
+        <div class="sidebar-wrapper">
+          <div class="panel panel-default sidebar_background" id="features">
+            <div class="panel-heading sidebar_background">
+              <h3 class="panel-title" style="color: white;">TOC
+              <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+            </div>
+
+            <div  class="panel-body " >
+              <h5 style="text-align: center; color: red;">* Please wait - it may take few minutes for layers to load.</h5>
+             
+              <div class="card">
+                <div class="card-body" id="headingTwo" style="padding-right:2px !important;">
+                
+
+                  <p style="color: green;">Energy Community Tax Credit Bonus</p>
+                  <h5 style="color: red;">Layers List</h5>
+
+                  <label for="CT_Coal_Closures_April2023_2" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('CT_Coal_Closures_April2023_2')" id="CT_Coal_Closures_April2023_2" ><span class="slider_my round"></span></label>
+                    CT Coal Closures April2023 - May2023  &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #ffa340; "></i>
+                  <br>
+                  <label for="MSAnMSA_EnergyComm" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('MSAnMSA_EnergyComm')" id="MSAnMSA_EnergyComm" ><span class="slider_my round"></span></label>
+                    MSA/Non-MSAs that are Energy Communities  &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #49331c; "></i>
+                  <br>
+
+                  <br>
+                  <p style="color: green;">Locations of Distressed and Disadvantaged Communities</p>
+                  <h5 style="color: red;">Layers List</h5>
+                  <label for="lyrDCI_2015_2019" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('lyrDCI_2015_2019')" id="lyrDCI_2015_2019" > <span class="slider_my round"></span></label>
+                    Distressed Community Index score above 80  &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #90e69a; "></i>
+                  
+                  <br>
+                  <label for="lyrCounty_Subdivisions_v1" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('lyrCounty_Subdivisions_v1')" id="lyrCounty_Subdivisions_v1" > <span class="slider_my round"></span></label>
+                    Puerto Rico Distressed Community Index  &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #1db02e; "></i>
+                   
+                  <br>
+                  <label for="lyrusa_november_2022" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('lyrusa_november_2022')" id="lyrusa_november_2022" ><span class="slider_my round"></span></label>
+                    Disadvantaged Community (All categories from the Climate and Environmental Justice Screening Tool)  &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #9bb8e3; "></i>
+                    
+                  <br>
+                  <label for="Alaska_Native_Village" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('Alaska_Native_Village')" id="Alaska_Native_Village" ><span class="slider_my round"></span></label>
+                    Disadvantaged Community Alaska Native Village Statistical Areas  &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #bc74e3; "></i>
+                  <br>
+                  <br>
+
+                  <p style="color: green;">USDA Income and Property Eligibility</p>
+                  <h5 style="color: red;">Layers List</h5>
+                  <label for="Eligibility_dynlyr" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('Eligibility_dynlyr')" id="Eligibility_dynlyr" > <span class="slider_my round"></span></label>
+                    Single Family Housing Guaranteed Ineligible Areas &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #0e30da; "></i>
+                  <br>
+                  <label for="Eligibility_dynlyr" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('Eligibility_dynlyr')" id="Eligibility_dynlyr" > <span class="slider_my round"></span></label>
+                    Single Family Housing Direct Ineligible Areas &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #61cfc8; "></i>
+                  <br>
+                  <label for="Eligibility_dynlyr" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('Eligibility_dynlyr')" id="Eligibility_dynlyr" > <span class="slider_my round"></span></label>
+                    Multi-Family Housing Ineligible Areas &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #da0eb8; "></i>
+                  <br>
+                  <label for="Eligibility_dynlyr" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('Eligibility_dynlyr')" id="Eligibility_dynlyr" > <span class="slider_my round"></span></label>
+                    Rural Business Ineligible Areas &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #272a39; "></i>
+                  <br>
+                  <label for="Eligibility_dynlyr" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('Eligibility_dynlyr')" id="Eligibility_dynlyr" > <span class="slider_my round"></span></label>
+                    OneRD Guarantee Loan Ineligible Areas &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #2a9b50; "></i>
+                  <br>
+                  <label for="Eligibility_dynlyr" class="lyr_lbls switch_my">
+                    <input type="checkbox" class="largerCheckbox" onclick="addRemoveLayer('Eligibility_dynlyr')" id="Eligibility_dynlyr" > <span class="slider_my round"></span></label>
+                    Water and Environmental Direct &nbsp<i class="fa-solid fa-circle fa-xl" style="color: #034b03; "></i>
+                  <br>
+                  
+                
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div id="map">
+          <div style="z-index: 1000000;position: absolute;padding-left: 100px;"  class="row">
+        <!-- <div class="col-md-4">
+                  <div class="card">
+                     <div class="btn btn-danger">
+                          <h5 class="card-title">Total Surveys</h5>
+                          <p class="card-text" id="tc" style="text-align: center;">00</p>
+                      </div>
+                  </div>
+              </div> -->
+          </div>
+      </div>
+    </div>
+   
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script> -->
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" crossorigin=""></script>
+
+    <script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/js/multiControl.css" />
+    <script src="assets/js/multiControl.js"></script>
+
+
+    <script src="assets/js/app.js"></script>
+
+
+
+  </body>
+</html>
+<script>
+  setTimeout(function(){
+    $("#CT_Coal_Closures_April2023_2").prop("checked", true);
+    var ckb = $("#CT_Coal_Closures_April2023_2").is(':checked');
+      if(ckb==true){
+          map.addLayer(CT_Coal_Closures_April2023_2)
+      }else{
+            map.removeLayer(CT_Coal_Closures_April2023_2)
+      }
+  },300)
+</script>
