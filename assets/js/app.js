@@ -246,6 +246,30 @@ function addRemoveLayer(name){
 
 
 }
+function addRemoveLayer_gotourl(name){
+  if(name=='sfp'){
+    window.open("https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do?pageAction=sfp", "_blank");
+  }
+  if(name=='assessmentType'){
+    window.open("https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do?pageAction=assessmentType", "_blank");
+  }
+  if(name=='mfhc'){
+    window.open("https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do?pageAction=mfhc", "_blank");
+  }
+  if(name=='RBSmenu'){
+    window.open("https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do?pageAction=RBSmenu", "_blank");
+  }
+  if(name=='ONERD'){
+    window.open("https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do?pageAction=ONERD", "_blank");
+  }
+  if(name=='WEPD'){
+    window.open("https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do?pageAction=WEPD", "_blank");
+  }
+
+ 
+
+
+}
 
 
 
