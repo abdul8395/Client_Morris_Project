@@ -7,8 +7,10 @@ var osm_street   = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.p
 
 
  map = L.map('map', {
-  center: [41.30967862979352, -100.10742187500001],
-  zoom: 4,
+  // center: [41.30967862979352, -100.10742187500001],
+  center: [40.51341277694226, -96.63574218750001],
+  // zoom: 4,
+  zoom: 5,
   attributionControl: false
 });
 var googlestreet   = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
