@@ -8,9 +8,10 @@ var osm_street   = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.p
 
  map = L.map('map', {
   // center: [41.30967862979352, -100.10742187500001],
-  center: [40.51341277694226, -96.63574218750001],
-  // zoom: 4,
-  zoom: 5,
+  center: [ 47.40702170777347, -104.94140625000001],
+  // center: [40.51341277694226, -96.63574218750001],
+  zoom: 4,
+  // zoom: 5,
   attributionControl: false
 });
 var googlestreet   = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
@@ -78,15 +79,17 @@ var lyrCounty_Subdivisions_v1=L.esri.featureLayer({
 
 var lyrusa_november_2022=L.esri.featureLayer({
          url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/usa_november_2022/FeatureServer/0',
+        //  url: 'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Justice40_Tracts_May_2022/FeatureServer/0',
+         where: "CC > 0",
          opacity: 0.7,
          style: (feature) => {
              let style = {
                  fillColor: "#9bb8e3",
                  weight: 0.3,
-                 opacity: 1,
+                 opacity: 0.5,
                  color:"black",
                  dashArray: '2',
-                 fillOpacity: 0.8
+                 fillOpacity: 0.7
              };
              return style;
          }
@@ -143,10 +146,114 @@ var MSAnMSA_EnergyComm=L.esri.featureLayer({
 });
 
 
-var Eligibility_dynlyr=L.esri.dynamicMapLayer({
-  url: "https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer",
-  opacity: 0.7
-}).addTo(map);
+var sfp=L.esri.featureLayer({
+  url: 'https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer/4',
+  opacity: 0.7,
+  style: (feature) => {
+      let style = {
+          fillColor: "#55d6dd",
+          weight: 0.3,
+          opacity: 1,
+          color:"black",
+          dashArray: '2',
+          fillOpacity: 0.8
+      };
+      return style;
+  }
+});
+var assessmentType=L.esri.featureLayer({
+  url: 'https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer/4',
+  opacity: 0.7,
+  style: (feature) => {
+      let style = {
+          fillColor: "#326568",
+          weight: 0.3,
+          opacity: 1,
+          color:"black",
+          dashArray: '2',
+          fillOpacity: 0.8
+      };
+      return style;
+  }
+});
+var mfhc=L.esri.featureLayer({
+  url: 'https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer/7',
+  opacity: 0.7,
+  style: (feature) => {
+      let style = {
+          fillColor: "#6c07df",
+          weight: 0.3,
+          opacity: 1,
+          color:"black",
+          dashArray: '2',
+          fillOpacity: 0.8
+      };
+      return style;
+  }
+});
+var RBSmenu=L.esri.featureLayer({
+  url: 'https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer/2',
+  opacity: 0.7,
+  style: (feature) => {
+      let style = {
+          fillColor: "#f6574f",
+          weight: 0.3,
+          opacity: 1,
+          color:"black",
+          dashArray: '2',
+          fillOpacity: 0.8
+      };
+      return style;
+  }
+});
+var ONERD=L.esri.featureLayer({
+  url: 'https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer/11',
+  opacity: 0.7,
+  style: (feature) => {
+      let style = {
+          fillColor: "#ede97e",
+          weight: 0.3,
+          opacity: 1,
+          color:"black",
+          dashArray: '2',
+          fillOpacity: 0.8
+      };
+      return style;
+  }
+});
+var WEPD=L.esri.featureLayer({
+  url: 'https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer/5',
+  opacity: 0.7,
+  style: (feature) => {
+      let style = {
+          fillColor: "#f377e0",
+          weight: 0.3,
+          opacity: 1,
+          color:"black",
+          dashArray: '2',
+          fillOpacity: 0.8
+      };
+      return style;
+  }
+});
+var CFG=L.esri.featureLayer({
+  url: 'https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer/10',
+  opacity: 0.7,
+  style: (feature) => {
+      let style = {
+          fillColor: "#efefef",
+          weight: 0.3,
+          opacity: 1,
+          color:"black",
+          dashArray: '2',
+          fillOpacity: 0.8
+      };
+      return style;
+  }
+});
+
+
+
 
 
 
@@ -234,12 +341,60 @@ function addRemoveLayer(name){
             map.removeLayer(MSAnMSA_EnergyComm)
       }
   }
-  if(name=='Eligibility_dynlyr'){
-      var ckb = $("#Eligibility_dynlyr").is(':checked');
+  if(name=='sfp'){
+      var ckb = $("#sfp").is(':checked');
       if(ckb==true){
-          map.addLayer(Eligibility_dynlyr)
+          map.addLayer(sfp)
       }else{
-            map.removeLayer(Eligibility_dynlyr)
+            map.removeLayer(sfp)
+      }
+  }
+  if(name=='assessmentType'){
+      var ckb = $("#assessmentType").is(':checked');
+      if(ckb==true){
+          map.addLayer(assessmentType)
+      }else{
+            map.removeLayer(assessmentType)
+      }
+  }
+  if(name=='mfhc'){
+      var ckb = $("#mfhc").is(':checked');
+      if(ckb==true){
+          map.addLayer(mfhc)
+      }else{
+            map.removeLayer(mfhc)
+      }
+  }
+  if(name=='RBSmenu'){
+      var ckb = $("#RBSmenu").is(':checked');
+      if(ckb==true){
+          map.addLayer(RBSmenu)
+      }else{
+            map.removeLayer(RBSmenu)
+      }
+  }
+  if(name=='ONERD'){
+      var ckb = $("#ONERD").is(':checked');
+      if(ckb==true){
+          map.addLayer(ONERD)
+      }else{
+            map.removeLayer(ONERD)
+      }
+  }
+  if(name=='WEPD'){
+      var ckb = $("#WEPD").is(':checked');
+      if(ckb==true){
+          map.addLayer(WEPD)
+      }else{
+            map.removeLayer(WEPD)
+      }
+  }
+  if(name=='CFG'){
+      var ckb = $("#CFG").is(':checked');
+      if(ckb==true){
+          map.addLayer(CFG)
+      }else{
+            map.removeLayer(CFG)
       }
   }
  
