@@ -14,11 +14,13 @@ var osm_street   = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.p
   // zoom: 5,
   attributionControl: false
 });
+
+
 var googlestreet   = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
     maxZoom: 20,
     subdomains:['mt0','mt1','mt2','mt3']
-    })
-   var dark  = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png').addTo(map);
+    }).addTo(map);
+   var dark  = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png')
     map.zoomControl.setPosition('bottomright');
 
 
@@ -50,7 +52,7 @@ var lyrDCI_2015_2019=L.esri.featureLayer({
          opacity: 0.7,
          style: (feature) => {
              let style = {
-                 fillColor: "#90e69a",
+                 fillColor: "#90e69a6a",
                  weight: 0.3,
                  opacity: 1,
                  color:"black",
@@ -118,7 +120,7 @@ var CT_Coal_Closures_April2023_2=L.esri.featureLayer({
   opacity: 0.7,
   style: (feature) => {
       let style = {
-          fillColor: "#ffa340",
+          fillColor: "#ffa3407f",
           weight: 0.3,
           opacity: 1,
           color:"black",
@@ -134,7 +136,7 @@ var MSAnMSA_EnergyComm=L.esri.featureLayer({
   opacity: 0.7,
   style: (feature) => {
       let style = {
-          fillColor: "#49331c",
+          fillColor: "#49331c88",
           weight: 0.3,
           opacity: 1,
           color:"black",
@@ -192,16 +194,16 @@ var mfhc=L.esri.featureLayer({
   }
 });
 var RBSmenu=L.esri.featureLayer({
-  url: 'https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer/2',
+  url: 'https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer/3',
   opacity: 0.7,
   style: (feature) => {
       let style = {
-          fillColor: "#f6574f",
+          fillColor: "#181717",
           weight: 0.3,
           opacity: 1,
-          color:"black",
-          dashArray: '2',
-          fillOpacity: 0.8
+          color:"#181717",
+          // dashArray: '2',
+          fillOpacity: 1
       };
       return style;
   }
